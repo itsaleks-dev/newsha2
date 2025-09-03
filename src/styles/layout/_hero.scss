@@ -11,8 +11,7 @@
     border-radius: 12px;
 
     @media (max-width: map.get(bp.$grid-breakpoints, s)) {
-        margin-left: 10px;
-        margin-right: 10px;
+        @include mixin.leftRight;
     }
 
     &__image {

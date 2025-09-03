@@ -1,8 +1,8 @@
 @font-face {
   font-family: "Montserrat";
   src: url("../assets/fonts/Montserrat.woff2") format("woff2-variations"),
-       url("../assets/fonts/Montserrat.woff2") format("woff2");
-  font-weight: 100 900;  // диапазон доступных весов
+    url("../assets/fonts/Montserrat.woff2") format("woff2");
+  font-weight: 100 900; // диапазон доступных весов
   font-style: normal;
   font-display: swap;
 }
@@ -12,4 +12,17 @@
   font-size: 18px;
   font-weight: 400;
   letter-spacing: 1.5px;
+}
+
+%titleMain {
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: 0.7px;
+}
+
+%titleSubmain {
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 0.7px;
+  text-align: center;
 }

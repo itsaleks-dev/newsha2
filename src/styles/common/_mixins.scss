@@ -18,3 +18,26 @@
     align-items: center;
     justify-content: center;
 }
+
+@mixin flexColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin flexBetween {
+    display: flex;
+    justify-content: space-between;
+}
+
+@mixin sliderViewport {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+@mixin leftRight {
+    padding-left: 10px;
+    padding-right: 10px;
+}
