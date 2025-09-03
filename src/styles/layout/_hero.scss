@@ -22,7 +22,11 @@
         object-fit: cover;
 
         @media (max-width: map.get(bp.$grid-breakpoints, lg)) {
-            height: 400;
+            height: 350px;
+        }
+
+        @media (max-width: map.get(bp.$grid-breakpoints, xs)) {
+            height: 400px;
         }
     }
 }
