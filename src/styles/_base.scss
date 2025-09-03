@@ -1,0 +1,42 @@
+@use 'sass:map';
+
+@use './common/fonts';
+@use './common/colors' as vars;
+@use './common/breakpoints' as bp;
+
+* * {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.content {
+    width: 1600px;
+    margin: 0 auto;
+
+    @media (max-width: map.get(bp.$grid-breakpoints, xl)) {
+        width: map.get(bp.$widths, lg);
+    }
+
+    @media (max-width: map.get(bp.$grid-breakpoints, lg)) {
+        width: map.get(bp.$widths, md);
+    }
+
+    @media (max-width: map.get(bp.$grid-breakpoints, md)) {
+        width: map.get(bp.$widths, sm);
+    }
+
+    @media (max-width: map.get(bp.$grid-breakpoints, sm)) {
+        width: map.get(bp.$widths, xs);
+    }
+
+    @media (max-width: map.get(bp.$grid-breakpoints, xs)) {
+        width: map.get(bp.$widths, s);
+    }
+
+    @media (max-width: map.get(bp.$grid-breakpoints, s)) {
+        width: 100%;
+    }
+}
