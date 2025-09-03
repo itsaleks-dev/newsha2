@@ -62,7 +62,7 @@
     overflow: hidden;
 
     @media (max-width: map.get(bp.$grid-breakpoints, md)) {
-      height: 300px;
+      height: 250px;
     }
 
     @media (max-width: map.get(bp.$grid-breakpoints, xs)) {
