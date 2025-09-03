@@ -3,7 +3,6 @@
 @use '../common/fonts';
 @use '../common/colors' as vars;
 @use '../common/mixins' as mixin;
-@use '../common/buttons' as btn;
 @use '../common/breakpoints' as bp;
 
 .content-header {
@@ -28,13 +27,7 @@
     }
 
     &__cta {
-        background: none;
-        border: none;
-        padding: 0;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
+        @include mixin.button-Bar;
     }
 }
 
@@ -48,16 +41,12 @@
     }
 
     &__list {
-        display: flex;
-        align-items: center;
+        @include mixin.alingCenter;
         gap: 30px;
     }
 
     &__link {
-        font-family: 'Montserrat', sans-serif;
-        font-size: 16px;
-        font-weight: 400;
-        letter-spacing: 0.7px;
+        @extend %fontMenu;
         color: vars.$black;
     }
 }
@@ -73,17 +62,10 @@
 }
 
 .src-search {
-    display: flex;
-    align-items: center;
+    @include mixin.alingCenter;
 
     &__cta {
-        background: none;
-        border: none;
-        padding: 0;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
+        @include mixin.button-Bar;
     }
 }
 
@@ -96,16 +78,9 @@
 }
 
 .src-cart {
-    display: flex;
-    align-items: center;
+    @include mixin.alingCenter;
 
     &__cta {
-        background: none;
-        border: none;
-        padding: 0;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
+        @include mixin.button-Bar;
     }
 }
