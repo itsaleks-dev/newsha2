@@ -8,9 +8,7 @@
 
 .content-header {
     margin-top: 30px;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
+    @include mixin.gridHeader;
 
     @media (max-width: map.get(bp.$grid-breakpoints, s)) {
         padding-left: 10px;
@@ -19,8 +17,7 @@
 }
 
 .menu-bar {
-    display: flex;
-    align-items: center;
+    @include mixin.alingCenter;
 }
 
 .burger {
@@ -67,14 +64,6 @@
 
 .logo {
     justify-self: center;
-
-    &__image {
-
-        @media (max-width: map.get(bp.$grid-breakpoints, s)) {
-            width: 120px;
-            height: 22px;
-        }
-    }
 }
 
 .userbar {
