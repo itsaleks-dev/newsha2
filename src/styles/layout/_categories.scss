@@ -2,95 +2,94 @@
 @use "../common/colors" as vars;
 @use "../common/breakpoints" as bp;
 
-/* ====== СЛАЙДЕР (без кнопок) ====== */
+/* ========= Slider ========= */
 .categories-slider {
-  /* управляем через CSS-переменные */
   --gap: 20px;
-  --cols: 4;             /* по умолчанию хотим 4 колонки */
-  --card-h: 400px;       /* высота карточки на десктопе */
-
-  position: relative;
+  --cols: 2;         /* по умолчанию — 2 карточки в ряд (даже < 480px) */
   display: flex;
   align-items: center;
 }
 
+/* Вьюпорт: скролл есть, но полоса скрыта */
 .categories-slider__viewport {
   flex: 1 1 auto;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: x mandatory;
 
-  /* только на самом маленьком брейкпоинте — по 10px слева/справа */
-  @media (max-width: map.get(bp.$grid-breakpoints, s)) {
-    padding-inline: 10px;
-  }
+  /* скрыть полосу прокрутки везде */
+  scrollbar-width: none;      /* Firefox */
+  -ms-overflow-style: none;   /* old Edge/IE */
 }
+.categories-slider__viewport::-webkit-scrollbar { display: none; }
 
+/* Трек: от края до края, равные промежутки */
 .categories-slider__track {
   display: flex;
-  /* важный момент: space-between + вычисляемая ширина карточек → от края до края */
-  justify-content: space-between;
+  justify-content: space-between; /* равномерно растягиваем по ширине */
   gap: var(--gap);
   min-width: 100%;
   padding-block: 4px;
 }
 
-/* ====== КАРТОЧКА ====== */
-/* Ширина карточки рассчитывается так, чтобы занять 100% ширины ряда ровно в N колонок,
-   при этом между карточками остаётся постоянный gap */
+/* ========= Cards ========= */
 .category {
-  scroll-snap-align: start;
+  /* ровно N колонок на строку, без белых полей */
   flex: 0 0 calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols));
-  height: var(--card-h);
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
+  scroll-snap-align: start;
 
   &__link {
     display: block;
-    flex: 1 1 auto;
+    width: 100%;
+    height: 300px;          /* фиксируем высоту — картинка заполнит её */
+    border-radius: 16px;
+    overflow: hidden;       /* скругление по контейнеру */
   }
 
   &__image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    border-radius: 16px;
     display: block;
+    object-fit: cover;      /* картинка заполняет блок */
+    object-position: center;
   }
 
   &__title {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 500;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.2px;
     color: vars.$black;
     text-align: center;
   }
 }
 
-/* ====== БРЕЙКПОИНТЫ: от края до края + нужные высоты ====== */
-/* На lg и ниже просил высоту ~300 — делаем */
-@media (max-width: map.get(bp.$grid-breakpoints, lg)) {
-  .categories-slider {
-    --card-h: 300px;
+/* ========= Breakpoints ========= */
+/* < 480px (s): нужен отступ слева 10px и корректный snap с учётом отступа */
+@media (max-width: map.get(bp.$grid-breakpoints, s)) {
+  .categories-slider__viewport {
+    /* чтобы первая карточка «прилипала» с учётом отступа слева */
+    scroll-padding-left: 10px;
+  }
+  .categories-slider__track {
+    padding-left: 10px;      /* ← гарантированный отступ слева 10px */
+    /* padding-right: 10px;  ← если захочешь ещё и справа — раскомментируй */
   }
 }
 
-/* Планшет / небольшие ноуты — пусть будет 3 в ряд (чтобы от края до края) */
-@media (max-width: map.get(bp.$grid-breakpoints, md)) {
+/* sm (≥768): 3 карточки, выше — повыше и картинку */
+@media (min-width: map.get(bp.$grid-breakpoints, sm)) {
   .categories-slider { --cols: 3; }
+  .category__link { height: 350px; }
 }
 
-/* На xs — 2 в ряд (по-прежнему от края до края) */
-@media (max-width: map.get(bp.$grid-breakpoints, xs)) {
-  .categories-slider { --cols: 2; }
+/* lg (≥1440): 4 карточки и высота 400 */
+@media (min-width: map.get(bp.$grid-breakpoints, lg)) {
+  .categories-slider { --cols: 4; }
+  .category__link { height: 400px; }
 }
 
-/* На самом маленьком — 1 в ряд, свайп по одной карточке; есть padding-inline:10px у viewport */
-@media (max-width: map.get(bp.$grid-breakpoints, s)) {
-  .categories-slider { --cols: 1; }
-  .category__title { font-size: 16px; } /* как у тебя было меньше шрифт на мелких */
-}
-
-/* Полностью убираем любые кнопки, если где-то остались */
+/* safety: если где-то остались кнопки — выключаем */
 .categories-slider__btn { display: none !important; }
