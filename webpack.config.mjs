@@ -20,12 +20,13 @@ export default {
     filename: isProd
       ? "assets/js/[name].[contenthash:8].js"
       : "assets/js/[name].js",
-    assetModuleFilename: "assets/[hash][ext][query]",
-    publicPath: "",
+    assetModuleFilename: "assets/[name].[hash:8][ext][query]",
+    publicPath: "", // для GitHub Pages
     clean: true,
   },
   module: {
     rules: [
+      // HTML + картинки з HTML
       {
         test: /\.html$/i,
         loader: "html-loader",
@@ -34,25 +35,34 @@ export default {
             list: [
               { tag: "img", attribute: "src", type: "src" },
               { tag: "img", attribute: "srcset", type: "srcset" },
+              { tag: "link", attribute: "href", type: "src", filter: (tag, attr) => tag.getAttribute("rel") === "icon" }
             ],
           },
           minimize: isProd,
         },
       },
+      // TS / JS
       {
         test: /\.[jt]s$/,
         exclude: /node_modules/,
         use: "babel-loader",
       },
+      // SCSS / CSS
       {
         test: /\.s?css$/i,
         use: [
-          MiniCssExtractPlugin.loader,
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: "../", // 🔑
+            },
+          },
           "css-loader",
           "postcss-loader",
           "sass-loader",
         ],
       },
+      // LESS (якщо треба)
       {
         test: /\.less$/i,
         use: [
@@ -61,11 +71,13 @@ export default {
           "less-loader",
         ],
       },
+      // Шрифти
       {
-        test: /\.(woff2?|ttf|otf|eot)$/i,
-        type: "asset/resource",
-        generator: { filename: "assets/fonts/[name].[hash:8][ext]" },
-      },
+  test: /\.(woff2?|ttf|otf|eot)$/i,
+  type: "asset/resource",
+  generator: { filename: "fonts/[name].[hash:8][ext]" } // ← БЕЗ "assets/"!
+},
+      // Картинки
       {
         test: /\.(png|jpe?g|gif|svg|webp)$/i,
         type: "asset/resource",
@@ -74,9 +86,7 @@ export default {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: "./src/index.html",
-    }),
+    new HtmlWebpackPlugin({ template: "./src/index.html" }),
     new MiniCssExtractPlugin({
       filename: "assets/css/[name].[contenthash:8].css",
     }),
@@ -86,7 +96,6 @@ export default {
         { from: "src/assets/images", to: "assets/images", noErrorOnMissing: true },
       ],
     }),
-
     ...(process.env.ANALYZE ? [new BundleAnalyzerPlugin()] : []),
   ],
   devServer: {
