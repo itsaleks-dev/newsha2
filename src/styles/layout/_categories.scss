@@ -2,99 +2,80 @@
 @use "../common/colors" as vars;
 @use "../common/breakpoints" as bp;
 
-/* ========= Slider ========= */
+.container-categories {
+    @media (max-width: map.get(bp.$grid-breakpoints, s)) {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
 .categories-slider {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
-/* Вьюпорт */
 .categories-slider__viewport {
-  flex: 1 1 auto;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scroll-snap-type: x mandatory;
+    flex: 1 1 auto;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
 
-  /* скрываем скроллбар */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
 }
+
 .categories-slider__viewport::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
-/* Трек */
 .categories-slider__track {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  min-width: 100%;
-  padding-block: 4px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    min-width: 100%;
 }
 
-/* ========= Cards ========= */
 .category {
-  flex: 0 0 350px; /* десктоп по умолчанию */
-  height: 350px;   /* было 400px → уменьшил на 50px */
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  scroll-snap-align: start;
-
-  &__link {
-    display: block;
-    width: 100%;
-    height: 100%;
-    border-radius: 16px;
-    overflow: hidden;
-  }
-
-  &__image {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-    object-position: center;
-  }
-
-  &__title {
-    font-size: 16px;
-    font-weight: 500;
-    letter-spacing: 1.2px;
-    color: vars.$black;
-    text-align: center;
-  }
-}
-
-/* ========= Breakpoints ========= */
-@media (max-width: map.get(bp.$grid-breakpoints, s)) {
-  .categories-slider__viewport {
-    scroll-padding-left: 10px;
-  }
-  .categories-slider__track {
-    padding-left: 10px;
-  }
-  .category {
-    flex: 0 0 calc(50% - 10px); /* две карточки в ряд */
-    height: 250px; /* чуть меньше на мобилке */
-  }
-}
-
-@media (min-width: map.get(bp.$grid-breakpoints, sm)) {
-  .category {
-    flex: 0 0 300px;
-    height: 300px; /* вместо 350px */
-  }
-}
-
-@media (min-width: map.get(bp.$grid-breakpoints, lg)) {
-  .category {
     flex: 0 0 350px;
-    height: 350px; /* вместо 400px */
-  }
-}
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    scroll-snap-align: start;
 
-/* кнопки убраны */
-.categories-slider__btn {
-  display: none !important;
+    @media (max-width: map.get(bp.$grid-breakpoints, md)) {
+        flex: 0 0 calc((100% - 40px) / 3);
+        height: 300px;
+    }
+
+    @media (max-width: map.get(bp.$grid-breakpoints, xs)) {
+        flex: 0 0 calc(50% - 10px);
+        height: 250px;
+    }
+
+    &__link {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: 16px;
+        overflow: hidden;
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    &__title {
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: 1.2px;
+        color: vars.$black;
+        text-align: center;
+    }
 }
