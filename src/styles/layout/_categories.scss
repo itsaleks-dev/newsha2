@@ -1,103 +1,96 @@
-@use 'sass:map';
+@use "sass:map";
+@use "../common/colors" as vars;
+@use "../common/breakpoints" as bp;
 
-@use '../common/fonts';
-@use '../common/colors' as vars;
-@use '../common/mixins' as mixin;
-@use '../common/breakpoints' as bp;
+/* ====== СЛАЙДЕР (без кнопок) ====== */
+.categories-slider {
+  /* управляем через CSS-переменные */
+  --gap: 20px;
+  --cols: 4;             /* по умолчанию хотим 4 колонки */
+  --card-h: 400px;       /* высота карточки на десктопе */
 
-.container-categories {
-    margin-top: 80px;
-    margin-bottom: 80px;
-
-    @media (max-width: map.get(bp.$grid-breakpoints, md)) {
-        margin-top: 30px;
-        margin-bottom: 30px;
-    }
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
-.content-categories {
-    display: flex;
-    flex-direction: column;
+.categories-slider__viewport {
+  flex: 1 1 auto;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+
+  /* только на самом маленьком брейкпоинте — по 10px слева/справа */
+  @media (max-width: map.get(bp.$grid-breakpoints, s)) {
+    padding-inline: 10px;
+  }
 }
 
-.categories-inner {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-
-    &__text {
-        font-size: 24px;
-        font-weight: 400;
-        letter-spacing: 1.5px;
-        color: vars.$black;
-
-        @media (max-width: map.get(bp.$grid-breakpoints, md)) {
-            font-size: 20px;
-        }
-
-        @media (max-width: map.get(bp.$grid-breakpoints, lg)) {
-            font-size: 18px;
-        }
-
-        &--color {
-            color: vars.$grey-green;
-        }
-    }
+.categories-slider__track {
+  display: flex;
+  /* важный момент: space-between + вычисляемая ширина карточек → от края до края */
+  justify-content: space-between;
+  gap: var(--gap);
+  min-width: 100%;
+  padding-block: 4px;
 }
 
-.categories {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
+/* ====== КАРТОЧКА ====== */
+/* Ширина карточки рассчитывается так, чтобы занять 100% ширины ряда ровно в N колонок,
+   при этом между карточками остаётся постоянный gap */
 .category {
-    width: 350px;
-    height: 400px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  scroll-snap-align: start;
+  flex: 0 0 calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols));
+  height: var(--card-h);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 
-    @media (max-width: map.get(bp.$grid-breakpoints, lg)) {
-        width: 300px;
-        margin-left: 10px;
-        margin-right: 10px;
-    }
+  &__link {
+    display: block;
+    flex: 1 1 auto;
+  }
 
-    @media (max-width: map.get(bp.$grid-breakpoints, md)) {
-        height: 300px;
-    }
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    display: block;
+  }
 
-    &__image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 16px;
-    }
-
-    &__title {
-        font-size: 20px;
-        font-weight: 500;
-        letter-spacing: 1.5px;
-        color: vars.$black;
-        text-align: center;
-
-        @media (max-width: map.get(bp.$grid-breakpoints, lg)) {
-            font-size: 16px;
-        }
-    }
+  &__title {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    color: vars.$black;
+    text-align: center;
+  }
 }
 
-.category-ts {
-    @media (max-width: map.get(bp.$grid-breakpoints, md)) {
-        display: none;
-    }
+/* ====== БРЕЙКПОИНТЫ: от края до края + нужные высоты ====== */
+/* На lg и ниже просил высоту ~300 — делаем */
+@media (max-width: map.get(bp.$grid-breakpoints, lg)) {
+  .categories-slider {
+    --card-h: 300px;
+  }
 }
 
-.category-st {
-    @media (max-width: map.get(bp.$grid-breakpoints, xs)) {
-        display: none;
-    }
+/* Планшет / небольшие ноуты — пусть будет 3 в ряд (чтобы от края до края) */
+@media (max-width: map.get(bp.$grid-breakpoints, md)) {
+  .categories-slider { --cols: 3; }
 }
+
+/* На xs — 2 в ряд (по-прежнему от края до края) */
+@media (max-width: map.get(bp.$grid-breakpoints, xs)) {
+  .categories-slider { --cols: 2; }
+}
+
+/* На самом маленьком — 1 в ряд, свайп по одной карточке; есть padding-inline:10px у viewport */
+@media (max-width: map.get(bp.$grid-breakpoints, s)) {
+  .categories-slider { --cols: 1; }
+  .category__title { font-size: 16px; } /* как у тебя было меньше шрифт на мелких */
+}
+
+/* Полностью убираем любые кнопки, если где-то остались */
+.categories-slider__btn { display: none !important; }

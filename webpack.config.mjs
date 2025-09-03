@@ -53,9 +53,7 @@ export default {
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: "../", // 🔑
-            },
+            options: { publicPath: "../" } // css -> на уровень вверх к assets/*
           },
           "css-loader",
           "postcss-loader",
@@ -73,10 +71,10 @@ export default {
       },
       // Шрифти
       {
-  test: /\.(woff2?|ttf|otf|eot)$/i,
-  type: "asset/resource",
-  generator: { filename: "fonts/[name].[hash:8][ext]" } // ← БЕЗ "assets/"!
-},
+        test: /\.(woff2?|ttf|otf|eot)$/i,
+        type: "asset/resource",
+        generator: { filename: "assets/fonts/[name].[hash:8][ext]" } // ← важно
+      },
       // Картинки
       {
         test: /\.(png|jpe?g|gif|svg|webp)$/i,
