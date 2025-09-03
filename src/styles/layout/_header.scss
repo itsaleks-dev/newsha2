@@ -13,6 +13,7 @@
     }
 
     @media (max-width: map.get(bp.$grid-breakpoints, s)) {
+        margin-top: 10px;
         padding-left: 10px;
         padding-right: 10px;
     }
