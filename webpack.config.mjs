@@ -4,6 +4,7 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import ESLintPlugin from "eslint-webpack-plugin";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
+import CopyWebpackPlugin from "copy-webpack-plugin";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,11 +21,24 @@ export default {
       ? "assets/js/[name].[contenthash:8].js"
       : "assets/js/[name].js",
     assetModuleFilename: "assets/[hash][ext][query]",
-    publicPath: "",   // ⚡ важно для GitHub Pages (относительные пути)
+    publicPath: "",
     clean: true,
   },
   module: {
     rules: [
+      {
+        test: /\.html$/i,
+        loader: "html-loader",
+        options: {
+          sources: {
+            list: [
+              { tag: "img", attribute: "src", type: "src" },
+              { tag: "img", attribute: "srcset", type: "srcset" },
+            ],
+          },
+          minimize: isProd,
+        },
+      },
       {
         test: /\.[jt]s$/,
         exclude: /node_modules/,
@@ -60,11 +74,19 @@ export default {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({ template: "./src/index.html" }),
+    new HtmlWebpackPlugin({
+      template: "./src/index.html",
+    }),
     new MiniCssExtractPlugin({
       filename: "assets/css/[name].[contenthash:8].css",
     }),
     new ESLintPlugin({ extensions: ["js", "ts"] }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: "src/assets/images", to: "assets/images", noErrorOnMissing: true },
+      ],
+    }),
+
     ...(process.env.ANALYZE ? [new BundleAnalyzerPlugin()] : []),
   ],
   devServer: {

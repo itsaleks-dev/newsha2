@@ -1,0 +1,32 @@
+@use 'sass:map';
+
+@use '../common/fonts';
+@use '../common/colors' as vars;
+@use '../common/mixins' as mixin;
+@use '../common/breakpoints' as bp;
+
+.hero {
+    overflow: hidden;
+    margin-top: 20px;
+    border-radius: 16px;
+
+    @media (max-width: map.get(bp.$grid-breakpoints, s)) {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    &__image {
+        display: block;
+        width: 100%;
+        height: 600px;
+        object-fit: cover;
+
+        @media (max-width: map.get(bp.$grid-breakpoints, xs)) {
+            height: 500px;
+        }
+
+        @media (max-width: map.get(bp.$grid-breakpoints, s)) {
+            height: 400px;
+        }
+    }
+}
