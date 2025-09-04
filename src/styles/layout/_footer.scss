@@ -29,7 +29,7 @@
 
     &__links {
         margin-top: 15px;
-        font-size: 16px;
+        font-size: 15px;
         font-weight: 400;
         letter-spacing: 0.7px;
         line-height: 17px;
@@ -54,6 +54,10 @@
         font-weight: 500;
         letter-spacing: 0.7px;
         color: vars.$black;
+
+        @media (max-width: map.get(bp.$grid-breakpoints, md)) {
+            font-size: 18px;
+        }
     }
 
     &__list {
@@ -63,7 +67,7 @@
     }
 
     &__link {
-        font-size: 16px;
+        font-size: 15px;
         font-weight: 400;
         letter-spacing: 0.7px;
         line-height: 17px;
