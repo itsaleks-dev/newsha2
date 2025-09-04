@@ -17,6 +17,12 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 40px;
+
+    @media (max-width: map.get(bp.$grid-breakpoints, xs)) {
+        flex-direction: column;
+        justify-content: center;
+        gap: 30px;
+    }
 }
 
 .contact {
@@ -25,6 +31,9 @@
 
     &__link {
         margin-bottom: 30px;
+        @media (max-width: map.get(bp.$grid-breakpoints, xs)) {
+            margin-bottom: 15px;
+        }
     }
 
     &__links {
@@ -48,6 +57,10 @@
     display: flex;
     flex-direction: column;
     gap: 45px;
+
+    @media (max-width: map.get(bp.$grid-breakpoints, xs)) {
+        gap: 15px;
+    }
 
     &__title {
         font-size: 22px;
