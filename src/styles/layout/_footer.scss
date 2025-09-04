@@ -7,6 +7,10 @@
 
 .container-footer {
     margin-top: 40px;
+
+    @media (max-width: map.get(bp.$grid-breakpoints, s)) {
+        @include mixin.leftRight;
+    }
 }
 
 .content-footer {
