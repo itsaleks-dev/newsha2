@@ -6,6 +6,8 @@
 @use "../common/breakpoints" as bp;
 
 .container-categories {
+  font-family: 'Montserrat', sans-serif;
+
   @media (max-width: map.get(bp.$grid-breakpoints, s)) {
     @include mixin.leftRight;
   }
@@ -17,7 +19,7 @@
   justify-content: center;
 
   &__title {
-    @extend %titleMain;
+    font-size: 24px;
     color: vars.$black;
 
     @media (max-width: map.get(bp.$grid-breakpoints, xs)) {
@@ -35,6 +37,7 @@
   flex: 1 1 auto;
   @include mixin.sliderViewport;
 }
+
 .categories-slider__viewport::-webkit-scrollbar {
   display: none;
 }
@@ -89,7 +92,7 @@
   }
 
   &__title {
-    @extend %titleSubmain;
+    font-size: 20px;
     color: vars.$black;
 
     @media (max-width: map.get(bp.$grid-breakpoints, xs)) {

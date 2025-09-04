@@ -5,6 +5,10 @@
 @use '../common/mixins' as mixin;
 @use '../common/breakpoints' as bp;
 
+.container-hero {
+    font-family: 'Montserrat', sans-serif;
+}
+
 .content-hero {
     @media (max-width: map.get(bp.$grid-breakpoints, s)) {
         @include mixin.leftRight;

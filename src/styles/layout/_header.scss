@@ -5,6 +5,10 @@
 @use '../common/mixins' as mixin;
 @use '../common/breakpoints' as bp;
 
+.container-header {
+    font-family: 'Montserrat', sans-serif;
+}
+
 .content-header {
     margin-top: 50px;
     @include mixin.gridHeader;

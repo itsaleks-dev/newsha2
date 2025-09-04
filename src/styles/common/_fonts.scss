@@ -1,10 +1,7 @@
-@font-face {
-  font-family: "Montserrat";
-  src: url("../assets/fonts/Montserrat.woff2") format("woff2-variations"),
-    url("../assets/fonts/Montserrat.woff2") format("woff2");
-  font-weight: 100 900; // диапазон доступных весов
-  font-style: normal;
-  font-display: swap;
+%fontBase {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
 }
 
 %fontMenu {

@@ -26,7 +26,7 @@ export default {
   },
   module: {
     rules: [
-      // HTML + картинки з HTML
+      // HTML + картинки из HTML
       {
         test: /\.html$/i,
         loader: "html-loader",
@@ -35,7 +35,7 @@ export default {
             list: [
               { tag: "img", attribute: "src", type: "src" },
               { tag: "img", attribute: "srcset", type: "srcset" },
-              { tag: "link", attribute: "href", type: "src", filter: (tag, attr) => tag.getAttribute("rel") === "icon" }
+              { tag: "source", attribute: "srcset", type: "srcset" }
             ],
           },
           minimize: isProd,
@@ -53,14 +53,14 @@ export default {
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
-            options: { publicPath: "../" } // css -> на уровень вверх к assets/*
+            options: { publicPath: "../" }, // css -> на уровень вверх к assets/*
           },
           "css-loader",
           "postcss-loader",
           "sass-loader",
         ],
       },
-      // LESS (якщо треба)
+      // LESS (если нужно)
       {
         test: /\.less$/i,
         use: [
@@ -69,11 +69,11 @@ export default {
           "less-loader",
         ],
       },
-      // Шрифти
+      // Шрифты
       {
         test: /\.(woff2?|ttf|otf|eot)$/i,
         type: "asset/resource",
-        generator: { filename: "assets/fonts/[name].[hash:8][ext]" } // ← важно
+        generator: { filename: "assets/fonts/[name].[hash:8][ext]" },
       },
       // Картинки
       {
@@ -92,6 +92,7 @@ export default {
     new CopyWebpackPlugin({
       patterns: [
         { from: "src/assets/images", to: "assets/images", noErrorOnMissing: true },
+        { from: "src/favicon.ico", to: "favicon.ico", noErrorOnMissing: true }
       ],
     }),
     ...(process.env.ANALYZE ? [new BundleAnalyzerPlugin()] : []),
