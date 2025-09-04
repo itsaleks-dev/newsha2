@@ -28,6 +28,10 @@
     0 2px 5px rgba(0, 0, 0, 0.2),
     0 4px 20px rgba(0, 0, 0, 0.15);
 
+    @media (max-width: map.get(bp.$grid-breakpoints, xs)) {
+        width: 100%;
+    }
+
     &__title {
         font-size: 40px;
         font-weight: 300;
