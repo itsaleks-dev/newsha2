@@ -25,8 +25,8 @@
     border-radius: 16px;
     background: white;
     box-shadow: 
-    0 2px 5px rgba(0, 0, 0, 0.2),
-    0 4px 20px rgba(0, 0, 0, 0.15);
+    0 2px 5px rgba(128, 128, 128, 0.3),     /* серый */
+    0 4px 20px rgba(255, 105, 180, 0.25);  /* розовый акцент */
 
     @media (max-width: map.get(bp.$grid-breakpoints, xs)) {
         width: 100%;
