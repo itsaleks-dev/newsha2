@@ -9,6 +9,10 @@
     margin-top: 20px;
     margin-bottom: 20px;
     font-family: 'Montserrat', sans-serif;
+    @media (max-width: map.get(bp.$grid-breakpoints, md)) {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
 }
 
 .copy {
@@ -18,9 +22,17 @@
     
     &__title {
 
-        font-size: 20px;
+        font-size: 18px;
         font-weight: 300;
         letter-spacing: 0.7px;
         color: vars.$black;
+
+        @media (max-width: map.get(bp.$grid-breakpoints, sm)) {
+            font-size: 16px;
+        }
+
+        @media (max-width: map.get(bp.$grid-breakpoints, sm)) {
+            font-size: 14px;
+        }
     }
 }
