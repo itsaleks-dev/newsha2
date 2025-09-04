@@ -87,5 +87,9 @@
   &__title {
     @extend %titleSubmain;
     color: vars.$black;
+
+    @media (max-width: map.get(bp.$grid-breakpoints, xs)) {
+      font-size: 20px;
+    }
   }
 }
