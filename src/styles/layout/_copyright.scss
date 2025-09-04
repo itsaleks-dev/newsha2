@@ -1,0 +1,26 @@
+@use 'sass:map';
+
+@use '../common/fonts';
+@use '../common/colors' as vars;
+@use '../common/mixins' as mixin;
+@use '../common/breakpoints' as bp;
+
+.content-copy {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.copy {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    &__title {
+
+        font-size: 20px;
+        font-weight: 300;
+        letter-spacing: 0.7px;
+        color: vars.$black;
+    }
+}
