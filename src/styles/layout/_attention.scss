@@ -39,12 +39,12 @@ box-shadow:
         color: vars.$black;
 
         @media (max-width: map.get(bp.$grid-breakpoints, s)) {
-            font-size: 32px;
+            font-size: 22px;
         }
     }
 
     &__menu {
-        margin-top: 220px;
+        margin-top: 120px;
         display: flex;
         flex-direction: column;
         gap: 20px;
@@ -57,7 +57,7 @@ box-shadow:
         color: vars.$black;
 
         @media (max-width: map.get(bp.$grid-breakpoints, s)) {
-            font-size: 20px;
+            font-size: 18px;
         }
     }
 }
