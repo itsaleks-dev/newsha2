@@ -1,0 +1,72 @@
+@use 'sass:map';
+
+@use '../common/fonts';
+@use '../common/colors' as vars;
+@use '../common/mixins' as mixin;
+@use '../common/breakpoints' as bp;
+
+.container-footer {
+    margin-top: 40px;
+}
+
+.content-footer {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.footer-menu {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.contact {
+    display: flex;
+    flex-direction: column;
+
+    &__link {
+        margin-bottom: 30px;
+    }
+
+    &__links {
+        margin-top: 15px;
+        font-size: 16px;
+        font-weight: 400;
+        letter-spacing: 0.7px;
+        line-height: 17px;
+        color: vars.$black;
+    }
+}
+
+.social {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+
+    &__title {
+        font-size: 22px;
+        font-weight: 500;
+        letter-spacing: 0.7px;
+        color: vars.$black;
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    &__link {
+        font-size: 16px;
+        font-weight: 400;
+        letter-spacing: 0.7px;
+        line-height: 17px;
+        color: vars.$black;
+    }
+}
