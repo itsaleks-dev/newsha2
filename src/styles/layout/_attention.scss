@@ -1,0 +1,54 @@
+@use 'sass:map';
+
+@use '../common/fonts';
+@use '../common/colors' as vars;
+@use '../common/mixins' as mixin;
+@use '../common/breakpoints' as bp;
+
+.content-attention {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.anchor {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    padding: 50px 0 50px 45px;
+    border-radius: 16px;
+    background: white;
+    box-shadow: 
+    0 2px 5px rgba(0, 0, 0, 0.2),
+    0 4px 20px rgba(0, 0, 0, 0.15);
+
+    &__title {
+        font-size: 40px;
+        font-weight: 300;
+        letter-spacing: 0.7px;
+        color: vars.$black;
+
+    }
+
+    &__text {
+        padding-top: 5px;
+        font-size: 40px;
+        font-weight: 400;
+        letter-spacing: 0.7px;
+        color: vars.$black;
+
+    }
+
+    &__menu {
+        margin-top: 220px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    &__link {
+        font-size: 24px;
+        font-weight: 300;
+        letter-spacing: 1px;
+        color: vars.$black;
+    }
+}
