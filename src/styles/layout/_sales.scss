@@ -6,15 +6,20 @@
 @use '../common/breakpoints' as bp;
 
 .container-sales {
-    margin-top: 50px;
-    margin-bottom: 50px;
-    height: 450px;
-    background: linear-gradient(#1E1E1E, #cdb9c7);
-    font-family: 'Montserrat', sans-serif;
+  margin: 50px 0;
+  height: 450px;
+  font-family: 'Montserrat', sans-serif;
 
-    @media (max-width: map.get(bp.$grid-breakpoints, xs)) {
-        height: 370px;
-    }
+  // фон будет задаваться через TypeScript
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+
+  @media (max-width: map.get(bp.$grid-breakpoints, xs)) {
+    height: 370px;
+    margin: 30px 0;
+  }
 }
 
 .content-sales {
@@ -80,4 +85,3 @@
         }
     }
 }
-

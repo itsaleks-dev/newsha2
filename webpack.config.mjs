@@ -14,6 +14,9 @@ export default {
   entry: "./src/index.ts",
   resolve: {
     extensions: [".ts", ".js"],
+    alias: {
+      "@": path.resolve(__dirname, "src"),
+    },
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -99,7 +102,7 @@ export default {
   ],
   devServer: {
     static: path.resolve(__dirname, "dist"),
-    port: 5173,
+    port: 3000,
     open: true,
     hot: true,
   },
