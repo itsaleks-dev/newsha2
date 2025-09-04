@@ -38,15 +38,9 @@
         letter-spacing: 0.7px;
         color: vars.$black;
 
-    }
-
-    &__text {
-        padding-top: 5px;
-        font-size: 40px;
-        font-weight: 400;
-        letter-spacing: 0.7px;
-        color: vars.$black;
-
+        @media (max-width: map.get(bp.$grid-breakpoints, s)) {
+            font-size: 32px;
+        }
     }
 
     &__menu {
@@ -61,5 +55,9 @@
         font-weight: 300;
         letter-spacing: 1px;
         color: vars.$black;
+
+        @media (max-width: map.get(bp.$grid-breakpoints, s)) {
+            font-size: 20px;
+        }
     }
 }
