@@ -7,6 +7,9 @@
 
 .container-footer {
     margin-top: 40px;
+    background: vars.$white;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
 
     @media (max-width: map.get(bp.$grid-breakpoints, s)) {
         @include mixin.leftRight;
@@ -14,7 +17,12 @@
 }
 
 .content-footer {
+    padding-top: 20px;
     font-family: 'Montserrat', sans-serif;
+
+    @media (max-width: map.get(bp.$grid-breakpoints, md)) {
+        padding-top: 30px;
+    }
 }
 
 .footer-menu {
