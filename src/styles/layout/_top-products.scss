@@ -129,12 +129,12 @@
     margin-top: 20px;
     padding: 10px 50px;
     border: none;
-    background: #f5f4f3;
+    background: #dbfe87;
     border-radius: 6px;
     font-size: 16px;
     font-weight: 500;
     letter-spacing: 0.7px;
-    color: vars.$black;
+    color: #504746;
 
     @media (max-width: map.get(bp.$grid-breakpoints, xs)) {
         width: 100%;
@@ -148,7 +148,7 @@
     font-size: 20px;
     font-weight: 900;
     letter-spacing: 0.7px;
-    color: #cfc7bd;
+    color: #7a306c;
 
     @media (max-width: map.get(bp.$grid-breakpoints, xs)) {
         order: 1;
