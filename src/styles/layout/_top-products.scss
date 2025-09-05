@@ -137,6 +137,8 @@
     color: vars.$white;
 
     @media (max-width: map.get(bp.$grid-breakpoints, xs)) {
+        width: 100%;
+        padding: 8px 50px;
         order: 2;
     }
   }
