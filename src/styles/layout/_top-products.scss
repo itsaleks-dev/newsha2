@@ -23,11 +23,9 @@
         color: vars.$black;
 
         @media (max-width: map.get(bp.$grid-breakpoints, md)) {
-            font-size: 24px;
-        }
-        @media (max-width: map.get(bp.$grid-breakpoints, xs)) {
             font-size: 20px;
         }
+
         @media (max-width: map.get(bp.$grid-breakpoints, s)) {
             font-size: 18px;
         }
@@ -111,12 +109,15 @@
     &__title {
         font-size: 20px;
         color: vars.$black;
+        line-height: 22px;
 
         @media (max-width: map.get(bp.$grid-breakpoints, xs)) {
             font-size: 18px;
+            line-height: 20px;
         }
         @media (max-width: map.get(bp.$grid-breakpoints, s)) {
             font-size: 16px;
+            line-height: 18px;
         }
     }
 }
