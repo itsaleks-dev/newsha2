@@ -110,6 +110,7 @@
         font-size: 20px;
         color: vars.$black;
         line-height: 22px;
+        letter-spacing: 0.5px;
 
         @media (max-width: map.get(bp.$grid-breakpoints, xs)) {
             font-size: 18px;
