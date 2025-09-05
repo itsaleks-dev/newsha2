@@ -6,7 +6,7 @@
 @use '../common/breakpoints' as bp;
 
 .container-footer {
-    margin-top: 40px;
+    margin-top: 80px;
     background: vars.$white;
     box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 16px;
@@ -17,7 +17,7 @@
 }
 
 .content-footer {
-    padding-top: 20px;
+    padding-top: 30px;
     font-family: 'Montserrat', sans-serif;
 
     @media (max-width: map.get(bp.$grid-breakpoints, md)) {
